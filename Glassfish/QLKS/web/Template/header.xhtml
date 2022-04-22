@@ -1,0 +1,58 @@
+<!--Khai báo namespace để sử dụng các component UI của JSF-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+    
+    <p:growl id="msg" showDetail="true"/>
+    
+    <div style="background-color: #003580;">
+        <a href="faces/index.xhtml"><img src="Content/Images/Logo.png" width="299" height="70" style="margin: 10px 0px 5px 160px"/></a>
+        <!--ui:include: định nghĩa nội dung để đưa vào template-->
+        <ui:include src="formDangNhap.xhtml"/>
+        <div jsf:id="head-dangnhap" style="float: right; margin-right: 60px; margin-top: 30px">
+            <!--Thẻ <c:choose> là thẻ có điều kiện thiết lập ngữ cảnh cho các hoạt động có điều kiện loại trừ lẫn nhau.  
+                Nó hoạt động giống như một câu lệnh chuyển đổi Java trong đó chúng ta chọn giữa một số lựa chọn thay thế-->
+            <c:choose>
+                <!--<C: when> là thẻ phụ của <choose> sẽ bao gồm nội dung của nó nếu điều kiện được đánh giá là 'true'.-->
+                <c:when test="#{sessionScope['TaiKhoan'] == null}">
+                    <h:form>
+                        <!--thẻ (div) là một thẻ block được dùng để gộp nhóm nhiều phần tử lại thành một khu vực. thường dduowjc dùng để để tạo bố cục hoặc tạo một khu vục nào đó trong website-->
+                        <div class="header-right">
+                            <!--Các <span>thẻ là nơi chứa inline sử dụng để đánh dấu một phần của một văn bản, hoặc một phần của một tài liệu-->
+                            <span style="margin-right: 30px; color: white; font-weight: 500">Hello You,Have a nice day!</span>
+                            <p:commandButton value="Đăng nhập" update="dangnhap" oncomplete="PF('dialog_dangnhap').show();" style="width: 95px; height: 30px; font-size: 13px !important; margin-right: 15px" ajax="true" />
+                            <p:commandButton value="Đăng ký" update="dangky" oncomplete="PF('dialog_dangky').show();" style="width: 95px; height: 30px; font-size: 13px !important; margin-right: 20px" ajax="true" />
+                        </div>
+                    </h:form>
+                </c:when>
+                <!--Thẻ < c:otherwise > cũng là thẻ phụ của <choose> nó theo sau thẻ <when> và chỉ chạy nếu tất cả các điều kiện trước đó được đánh giá là false-->
+                <c:otherwise>
+                    <h:form>
+                        <span style="margin-right: 20px; color: white; font-weight: bold">Chào #{sessionScope['TaiKhoan'].hoTen},</span>
+                        <p:commandLink style="color: #00BBFF; font-weight: bold" value="Đăng Xuất" action="#{beanNguoiDung.dangXuat()}"/>
+                    </h:form>
+                </c:otherwise>
+                
+                
+            </c:choose>
+        </div>
+        <div class="c80">
+            <div class="topnav">
+                <h:form id="form-nav">
+                    <h:commandLink id="link-1" action="#{beanNavigation.trangChu()}" value="Trang chủ"></h:commandLink>
+                    <h:commandLink id="link-2" action="#{beanNavigation.toanBoKhachSan()}" value="Khách sạn"></h:commandLink>
+                    <p:commandLink id="link-3" action="#{beanNguoiDung.caNhan()}" value="Cá nhân" update="msg"></p:commandLink>
+                    <h:commandLink id="link-4" action="#{beanNavigation.tinTuc()}" value="Tin tức"></h:commandLink>
+                    <h:commandLink id="link-5" action="#{beanNavigation.lienHe()}" value="Liên hệ"></h:commandLink>
+                </h:form>
+            </div> 
+        </div>
+    </div>
+    
+    <script>var link_active = 1;</script>
+    
+</ui:composition>

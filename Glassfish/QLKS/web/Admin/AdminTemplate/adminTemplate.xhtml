@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="vi">
+    
+    <f:view contentType="text/html">
+        <h:head>
+            <!--Thẻ Facet đăng ký một khía cạnh được đặt tên trên thành phần được liên kết với thẻ kèm theo. Một khía cạnh đại diện cho một phần được đặt tên trong một thành phần nator="true" rows="8" style="margin-bottom:20px" paginatorPosition="top">
+                 vùng chứa. -->
+            <f:facet name="first">
+                <!--Thẻ HTML <meta> hay thẻ meta trong HTML được sử dụng để cung cấp metadata về tài liệu HTML. Metadata sẽ không được hiển thị trên trình duyệt, nhưng nó sẽ được bộ máy tìm kiếm phân tích để lấy thông tin cơ bản về trang web của bạn.-->               
+                <!--Content: xác định giá trị của đặc tính, http-equiv: Được sử dụng cho các Header thông báo phản hồi HTTP.-->
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+        <h:body>
+            <!--mở rộng trang-->
+            <p:layout fullPage="true">
+                <!--collapsible: có thể thu gọn-->
+                <p:layoutUnit style="background-color: wheat" position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <div style="float: right; margin-right: 40px; margin-top: 20px">
+                        <h3>Hello #{sessionScope['TaiKhoan'].hoTen},</h3>
+                    </div>
+                    <div style="margin-left: 650px">
+                        <h2><span style="color: darkblue">TRANG QUẢN TRỊ ADMIN</span></h2>
+                    </div>
+                    
+                    
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="190" header="Menu" collapsible="true" style="background-color: lightgray">
+                    <h:form>
+                        <h3><span style="color: black"> Quản Trị</span></h3>
+                        <!--toggleable: có thể thu gọi menu-->
+                        <p:menu toggleable="true">
+                            <p:submenu style="background-color: purple" label="Danh Mục" >
+                                
+                                <p:menuitem  value="Thành Phố" url="adminThanhPho.xhtml" icon="fa fa-hospital-o" />
+                                <p:menuitem  value="Loại Khách Sạn" url="adminLoaiKhachSan.xhtml" icon="fa fa-fw fa-list" />
+                                <p:menuitem  value="Khách Sạn" url="adminKhachSan.xhtml" icon="fa fa-fw fa-building"/>
+                                <p:menuitem  value="Phòng" url="adminPhong.xhtml" icon="fa fa-fw fa-bed"/>
+                            </p:submenu>
+                            <p:submenu style="background-color: purple" label="Người Dùng">
+                                 <p:menuitem  value="Tài Khoản" url="adminTaiKhoan.xhtml" icon="fa fa-fw fa-user-circle" />
+                                 <p:menuitem  value="Cài đặt" url="#" icon="pi pi-cog" />
+                                 <p:menuitem  value="Đăng Xuất" action="#{beanNguoiDung.dangXuat()}" icon="pi pi-sign-out"/>
+                            </p:submenu>
+                        </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+                    <style>
+                        .ui-fileupload-content {
+                            display: none;
+                        }
+                        body .ui-fileupload .ui-fileupload-buttonbar {
+                            margin: 0;
+                            padding: 0;
+                            border: none;
+                            background-color: transparent;
+                        }
+                    </style>
+                
+                <p:layoutUnit position="center">
+                    
+                   <ui:insert name="content">Content</ui:insert>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

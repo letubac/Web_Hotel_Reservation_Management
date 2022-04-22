@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <title>Quản lý Khách sạn</title>
+        </h:head>
+        
+        <h:body>
+            <ui:composition template="Template/template.xhtml">
+                <ui:define name="content">
+                    <!--thẻ (div) là một thẻ block được dùng để gộp nhóm nhiều phần tử lại thành một khu vực. thường dduowjc dùng để để tạo bố cục hoặc tạo một khu vục nào đó trong website-->
+                    <div style="background-color: pink; height: 230px; border: 1px solid #E0E0E0;">
+                        <div class="c80" style="margin-top: 20px">
+                            
+                            <div style="height: 30px; text-align: left">
+                            <h:form id="a">
+                                
+                                <h4> <b><a href="Template\text.xhtml" ><img style="margin-left: 10px" src="Content/Images/dauthan.png" alt="Trợ Giúp Về Virus Corona (COVID-19)"/>Trợ Giúp Về Virus Corona (COVID-19)</a></b></h4>
+                                
+                            </h:form>
+                            </div>
+                            
+                            <h3><b>Nhanh lên! 26% chỗ nghỉ trên trang của chúng tôi đã kín phòng!</b></h3>
+                            <h5>Phòng ở BVH One Team đang bán rất chạy vào ngày bạn chọn. Nhanh tay đặt trước khi giá tăng.</h5>
+                            <div class="tim-kiem">
+                                <h:form>
+                                    <p:inputText id="a" placeholder="Tìm kiếm ở đây..." value="#{beanNavigation.tenThanhPhoTimKiem}" />
+                                    <h:commandButton value="Seach" class="btn-timkiem" action="#{beanNavigation.timKiem()}" />
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="c80">
+                       <h2>Khám phá Việt Nam</h2>
+                        <h5>Các điểm đến phổ biến này có nhiều điều chờ đón bạn</h5>
+                        <div class="row">
+                            <h:form>
+                                <!--Thẻ <c: forEach>  được sử dụng để nó lặp qua một tập hợp các đối tượng.-->
+                                <c:forEach items="#{beanThanhPho.listThanhPho}" var="item" begin="0" end="1">
+                                    <h:commandLink action = "#{beanNavigation.dsTheoThanhPho(item.id)}">
+                                        <div class="col-md-6">
+                                            <div class="div-zoom">
+                                                <img class="img-zoom" src="#{item.urlHinhAnh}" alt="Img"/>
+                                            </div>
+                                            <div class="chu-goc-trai">
+                                                <!--<span> được sử dụng để nhóm và áp dụng các style cho các phần tử nội tuyến.-->
+                                                <span style="font-size: 28px; font-weight: bold;">#{item.ten}</span>
+                                                <img src="Content/Images/VietNamFlag.png" alt="VietNam" valign="middle"/>
+                                                <br/>
+                                                
+                                                <span style="font-size: 16px;">
+                                                    <h:outputText value="#{item.soKhachSan*235}">
+                                                        <!--NumberConverter là một lớp chuyển đổi JSF xử lý việc chuyển đổi chuỗi thành số và ngược lại.--> 
+                                                      <!--Nó hữu ích cho việc chuyển đổi các giá trị dấu phẩy động và số nguyên từ mô hình miền của bạn sang định dạng phù hợp với người dùng của bạn-->
+                                                        <f:convertNumber type="number" pattern="#,###"/>
+                                                    </h:outputText>
+                                                    chỗ ở
+                                                </span>
+                                                
+                                            </div>
+                                        </div>
+                                    </h:commandLink>
+                                </c:forEach>
+                            </h:form>
+                        </div>
+                        <div class="row">
+                            <h:form>
+                                <c:forEach items="#{beanThanhPho.listThanhPho}" var="item" begin="2" end="4">
+                                    <h:commandLink action = "#{beanNavigation.dsTheoThanhPho(item.id)}">
+                                        <div class="col-md-4">
+                                            <div class="div-zoom">
+                                                <img class="img-zoom" src="#{item.urlHinhAnh}" alt="Img"/>
+                                            </div>
+                                            <div class="chu-goc-trai">
+                                                <span style="font-size: 28px; font-weight: bold;">#{item.ten}</span>
+                                                <img src="Content/Images/VietNamFlag.png" alt="VietNam" valign="middle"/>
+                                                <br/>
+                                                <span style="font-size: 16px;">
+                                                    <h:outputText value="#{item.soKhachSan*235}">
+                                                        <!--NumberConverter là một lớp chuyển đổi JSF xử lý việc chuyển đổi chuỗi thành số và ngược lại.--> 
+                                                      <!--Nó hữu ích cho việc chuyển đổi các giá trị dấu phẩy động và số nguyên từ mô hình miền của bạn sang định dạng phù hợp với người dùng của bạn-->
+                                                        <f:convertNumber type="number" pattern="#,###"/>
+                                                    </h:outputText>
+                                                    chỗ ở
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </h:commandLink>
+                                </c:forEach>
+                            </h:form>
+                        </div>
+                    </div>
+
+
+                    <div class="c80">
+                        <h2>Tìm theo loại chỗ nghỉ</h2>
+                        <div class="row">
+                            <!--https://www.jqueryscript.net/slider/Flexible-Multi-item-Carousel-Plugin-Bootstrap-ResCarousel.html-->
+                            <!--data-items : số lượng mục hiển thị trên các kích thước màn hình khác nhau (data-items = "xs, sm, md, lg").
+                                data-slide : số lượng mục sẽ trượt tại một thời điểm.
+                                data-interval : tự động trượt các mục có giá trị mili giây.
+                                data-speed : kiểm soát tốc độ của các mục di chuyển.
+                                data-animator : cung cấp một số hoạt ảnh cho các mục trượt.
+                                data-load: bào cho biết rằng thanh trượt sẽ chạm vào cuối-->
+                            <div class="MultiCarousel" data-items="1,2,3,4" data-slide="1" id="MultiCarousel" data-interval="1000">
+                                <div class="MultiCarousel-inner">
+                                    <h:form>
+                                        <c:forEach items="#{beanLoaiKhachSan.listLoaiKhachSan}" var="item">
+                                            <div class="item">
+                                                <h:commandLink style="text-decoration: none" action = "#{beanNavigation.dsTheoLoaiKhachSan(item.id)}">
+                                                    <div class="img-loaiks"><img src="#{item.urlHinhAnh}" alt="Img"/></div>
+                                                    <br/>
+                                                    <div style="padding-left: 10px;">
+                                                        <span style="font-size: 18px; font-weight: bold">#{item.ten}</span>
+                                                        <br/>
+                                                        <span style="font-size: 16px;">
+                                                            Gồm 
+                                                            <h:outputText value="#{item.soKhachSan*235}">
+                                                                <f:convertNumber type="number" pattern="#,###"/>
+                                                            </h:outputText>
+                                                             khách sạn
+                                                        </span>
+                                                    </div>
+                                                </h:commandLink>
+                                            </div>
+                                        </c:forEach>
+                                    </h:form>
+                                </div>
+                                <button class="btn btn-primary leftLst"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                                <button class="btn btn-primary rightLst"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="Content/js/carousel.js"></script>
+
+
+                    <div class="c80">
+                        <h2>Khách Sạn khách yêu thích</h2>
+                        <div class="row">
+                            <c:forEach items="#{beanKhachSan.listKhachSan}" begin="0" end="3" var="item">
+                                <div class="col-md-3 ks-noibat">
+                                    <h:form>
+                                        <h:commandLink action = "#{beanNavigation.thongTinKhachSan(item.idKhachSan)}">
+                                            <div class="div-ks">
+                                                <img style="height: 220px" src="Content/Images/KhachSan/#{item.idKhachSan}.jpg" alt="Img"/>
+                                            </div>
+                                            <div style="font-size: 18px; font-weight: bold; color: #0077CC">#{item.tenKhachSan}</div>
+                                            <div style="font-size: 14px; color: #777777 ">#{item.tenThanhPho}</div>
+                                            <div style="font-size: 14px; color: #777777">#{item.tenLoaiKhachSan}</div>
+                                            <div style="font-size: 16px; font-weight: bold; color: #003580">#{item.danhGia} &#9733; - #{beanKhachSan.strDanhGia[item.danhGia]}</div>
+                                        </h:commandLink>
+                                    </h:form>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+
+
+                </ui:define>
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>
+
