@@ -1,4 +1,5 @@
 # Project Quản Lý Khách Sạn
+Đề tài quản lý đặt phòng khách sạn bằng ngôn ngữ java
 
 ## Sử dụng:
 
