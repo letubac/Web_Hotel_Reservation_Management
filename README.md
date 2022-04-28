@@ -13,6 +13,4 @@ JSF 2.2
 
 PrimeFaces 7.0
 
-Thanks to Booking.com
-
 Jdbc4-2.0
